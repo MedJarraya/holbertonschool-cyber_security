@@ -1,2 +1,2 @@
 #!/bin/bash
-lsb_release -si | tr -d '\n'
+lsb_release -si -i | tr -d '\n'
