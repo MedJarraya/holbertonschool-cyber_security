@@ -1,2 +1,2 @@
 #!/bin/bash
-eval "$(echo "$1" | base64 -d)"
+lsb_release -is -s
