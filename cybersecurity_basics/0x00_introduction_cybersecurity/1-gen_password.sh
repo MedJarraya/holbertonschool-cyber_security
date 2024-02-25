@@ -1,2 +1,2 @@
 #!/bin/bash
-echo -n "$(</dev/urandom tr -dc '[:alnum:]' | head -c $1 | fold -w $1)"
+tr -dc '[:alnum:]' < /dev/urandom | head -c $1 | fold -w $1 | echo -n
