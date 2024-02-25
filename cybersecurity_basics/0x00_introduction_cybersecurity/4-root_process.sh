@@ -1,2 +1,2 @@
 #!/bin/bash
-[ "$#" -eq 1 ] && ps -u "$1" -o pid,vsz,rss,args | awk '$2 > 0 && $3 > 0 {print $0}'
+[ "$#" -eq 1 ] && ps -e -o user,pid,vsz,rss,args | awk -v user="$1" '$1 == user && $4 > 0 && $5 > 0 {print $0}'
