@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo ss -t -u -n -a -o -p
+sudo\ ss\ -tunaop\ \$1
