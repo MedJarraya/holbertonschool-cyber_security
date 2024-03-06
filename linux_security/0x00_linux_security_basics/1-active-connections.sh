@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo\ ss\ -tunaop\ \$1
+sudo.ss.(-antp)|.(-a.-n-t-p) \$1
