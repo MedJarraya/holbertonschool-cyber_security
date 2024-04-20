@@ -1,24 +1,22 @@
 #!/bin/bash
 
-# This code is an xor decoder
+# Check if an argument is provided
+if [ $# -ne 1 ]; then
+    echo "Usage: $0 <encoded_string>"
+    exit 1
+fi
 
-password="$1"
+# Decode XOR-encoded string
+password="${1#'{xor}'}"
+decoded_password=$(echo -n "$password" | base64 -d | tr -d '\0' | tr -dc '\11\12\15\40-\176')
 
-password="${password#'{xor}'}"
-
-decoded_password=$(echo "$password" | base64 -d)
-
+# XOR each character with the ASCII value of '_'
 decoded_password_xor=""
-
 for ((i = 0; i < ${#decoded_password}; i++)); do
-
     char="${decoded_password:$i:1}"
-
     ascii_value=$(printf "%d" "'$char")
-
     xor_result=$(( ascii_value ^ 95 ))
-    
-    decoded_password_xor+="$(printf "$(printf '\\x%x' $xor_result)")"
-    
+    decoded_password_xor+="$(printf "\\x$(printf '%x' $xor_result)")"
 done
-echo "$decoded_password_xor"
+
+echo -n "$decoded_password_xor"
